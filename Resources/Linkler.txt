@@ -1,0 +1,6 @@
+https://github.com/JamesNK/Newtonsoft.Json/issues/78
+https://stackoverflow.com/questions/7397207/json-net-error-self-referencing-loop-detected-for-type
+http://www.dotnetawesome.com/2016/09/token-based-authentication-in-webapi.html
+https://www.codeproject.com/Articles/1187872/Token-Based-Authentication-for-Web-API-where-Legac
+http://www.advancesharp.com/blog/1216/oauth-web-api-token-based-authentication-with-custom-database
+https://stackoverflow.com/questions/33398961/db-first-authentication-confusion-with-asp-net-web-api-2-ef6

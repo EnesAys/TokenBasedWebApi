@@ -1,0 +1,241 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
+-- --------------------------------------------------
+-- Date Created: 05/23/2018 21:31:38
+-- Generated from EDMX file: C:\Users\Asus\Desktop\TokenBasedWebApi\TokenBasedWebApi.DATA\Model.edmx
+-- --------------------------------------------------
+
+SET QUOTED_IDENTIFIER OFF;
+GO
+USE TokenBasedWebApiDB; -------Your DATABASE NAME;
+GO
+IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
+GO
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[FK_Logs_LogType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Logs] DROP CONSTRAINT [FK_Logs_LogType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Texts_TextTypes]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Texts] DROP CONSTRAINT [FK_Texts_TextTypes];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Texts_Users]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Texts] DROP CONSTRAINT [FK_Texts_Users];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Users_Roles]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_Users_Roles];
+GO
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[Logs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Logs];
+GO
+IF OBJECT_ID(N'[dbo].[LogType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LogType];
+GO
+IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Roles];
+GO
+IF OBJECT_ID(N'[dbo].[sysdiagrams]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[sysdiagrams];
+GO
+IF OBJECT_ID(N'[dbo].[Texts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Texts];
+GO
+IF OBJECT_ID(N'[dbo].[TextTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TextTypes];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'Logs'
+CREATE TABLE [dbo].[Logs] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [CreatedDate] datetime  NOT NULL,
+    [MethodName] nvarchar(200)  NOT NULL,
+    [Data] nvarchar(max)  NULL,
+    [LogTypeID] int  NOT NULL,
+    [IsError] bit  NOT NULL
+);
+GO
+
+-- Creating table 'LogType'
+CREATE TABLE [dbo].[LogType] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [Type] nvarchar(10)  NULL
+);
+GO
+
+-- Creating table 'Roles'
+CREATE TABLE [dbo].[Roles] (
+    [RoleID] int IDENTITY(1,1) NOT NULL,
+    [RoleType] nvarchar(20)  NOT NULL
+);
+GO
+
+-- Creating table 'sysdiagrams'
+CREATE TABLE [dbo].[sysdiagrams] (
+    [name] nvarchar(128)  NOT NULL,
+    [principal_id] int  NOT NULL,
+    [diagram_id] int IDENTITY(1,1) NOT NULL,
+    [version] int  NULL,
+    [definition] varbinary(max)  NULL
+);
+GO
+
+-- Creating table 'Texts'
+CREATE TABLE [dbo].[Texts] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [Title] nvarchar(50)  NOT NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [Release_date] datetime  NOT NULL,
+    [UserID] uniqueidentifier  NOT NULL,
+    [TextTypeID] int  NOT NULL,
+    [IsRelease] bit  NOT NULL
+);
+GO
+
+-- Creating table 'TextTypes'
+CREATE TABLE [dbo].[TextTypes] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [Type] nvarchar(20)  NOT NULL
+);
+GO
+
+-- Creating table 'Users'
+CREATE TABLE [dbo].[Users] (
+    [ID] uniqueidentifier  NOT NULL,
+    [Name] nvarchar(20)  NULL,
+    [Surname] nvarchar(20)  NULL,
+    [Email] nvarchar(320)  NOT NULL,
+    [Password] nvarchar(10)  NOT NULL,
+    [RoleID] int  NOT NULL,
+    [Username] nvarchar(50)  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [ID] in table 'Logs'
+ALTER TABLE [dbo].[Logs]
+ADD CONSTRAINT [PK_Logs]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'LogType'
+ALTER TABLE [dbo].[LogType]
+ADD CONSTRAINT [PK_LogType]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [RoleID] in table 'Roles'
+ALTER TABLE [dbo].[Roles]
+ADD CONSTRAINT [PK_Roles]
+    PRIMARY KEY CLUSTERED ([RoleID] ASC);
+GO
+
+-- Creating primary key on [diagram_id] in table 'sysdiagrams'
+ALTER TABLE [dbo].[sysdiagrams]
+ADD CONSTRAINT [PK_sysdiagrams]
+    PRIMARY KEY CLUSTERED ([diagram_id] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'Texts'
+ALTER TABLE [dbo].[Texts]
+ADD CONSTRAINT [PK_Texts]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'TextTypes'
+ALTER TABLE [dbo].[TextTypes]
+ADD CONSTRAINT [PK_TextTypes]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [PK_Users]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [LogTypeID] in table 'Logs'
+ALTER TABLE [dbo].[Logs]
+ADD CONSTRAINT [FK_Logs_LogType]
+    FOREIGN KEY ([LogTypeID])
+    REFERENCES [dbo].[LogType]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Logs_LogType'
+CREATE INDEX [IX_FK_Logs_LogType]
+ON [dbo].[Logs]
+    ([LogTypeID]);
+GO
+
+-- Creating foreign key on [RoleID] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [FK_Users_Roles]
+    FOREIGN KEY ([RoleID])
+    REFERENCES [dbo].[Roles]
+        ([RoleID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Users_Roles'
+CREATE INDEX [IX_FK_Users_Roles]
+ON [dbo].[Users]
+    ([RoleID]);
+GO
+
+-- Creating foreign key on [TextTypeID] in table 'Texts'
+ALTER TABLE [dbo].[Texts]
+ADD CONSTRAINT [FK_Texts_TextTypes]
+    FOREIGN KEY ([TextTypeID])
+    REFERENCES [dbo].[TextTypes]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Texts_TextTypes'
+CREATE INDEX [IX_FK_Texts_TextTypes]
+ON [dbo].[Texts]
+    ([TextTypeID]);
+GO
+
+-- Creating foreign key on [UserID] in table 'Texts'
+ALTER TABLE [dbo].[Texts]
+ADD CONSTRAINT [FK_Texts_Users]
+    FOREIGN KEY ([UserID])
+    REFERENCES [dbo].[Users]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Texts_Users'
+CREATE INDEX [IX_FK_Texts_Users]
+ON [dbo].[Texts]
+    ([UserID]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

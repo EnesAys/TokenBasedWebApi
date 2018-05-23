@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenBasedWebApi", "TokenBasedWebApi\TokenBasedWebApi.csproj", "{A0F1631C-3DEE-4318-8D73-A25509B2070E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenBasedWebApi.DATA", "TokenBasedWebApi.DATA\TokenBasedWebApi.DATA.csproj", "{03239228-1F5D-4506-9C48-2D71D4342D47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0F1631C-3DEE-4318-8D73-A25509B2070E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F1631C-3DEE-4318-8D73-A25509B2070E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F1631C-3DEE-4318-8D73-A25509B2070E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F1631C-3DEE-4318-8D73-A25509B2070E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03239228-1F5D-4506-9C48-2D71D4342D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03239228-1F5D-4506-9C48-2D71D4342D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03239228-1F5D-4506-9C48-2D71D4342D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03239228-1F5D-4506-9C48-2D71D4342D47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAEA525A-1A5C-497A-AE6C-0C6196B96028}
+	EndGlobalSection
+EndGlobal

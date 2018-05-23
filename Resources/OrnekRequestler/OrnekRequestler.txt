@@ -1,0 +1,50 @@
+POST api/token
+
+Content-type:x-www-form-urlencoded
+
+parametreler:
+
+"key":"username","value":"enes"
+"key":"password","value":"1234"
+"key":"grant_type","value":"password"
+--------------------------------------------------------
+POST api/user/Register
+
+"key":"Name","value":"Enes",
+"key":"Surname","value":"Ays.",
+"key":"Email","value":"enes@enes.com",
+"key":"Password","value":"e123",
+"key":"Username","value":"enesa"
+--------------------------------------------------------
+POST api/user/AddSuperUser
+
+"key":"Name","value":"Enes",
+"key":"Surname","value":"Ays.",
+"key":"Email","value":"enes@enes.com",
+"key":"Password","value":"e123",
+"key":"Username","value":"enesa"
+
+User bilgilerine + olarak Header kýsmýnda
+
+Key:Authorization,value:Bearer + token
+
+--------------------------------------------------------
+
+GET api/text/GetTexts
+--------------------------------------------------------
+
+POST api/text/AddText
+
+"key":"Title","value":"Yazýlým Terimleri",
+"key":"Content","value":"Design Patterns",
+"key":"TextTypeID","value":"2",
+"key":"IsRelease","value":"true"
+
+TEXT bilgilerine + olarak Header kýsmýnda
+
+Key:Authorization,value:Bearer + token
+
+--------------------------------------------------------
+
+DELETE api/text/DeleteText?id=1 
+id parametre olarak verilmeli ve header kýsmýnda bulunan bearer + token Rolü SuperUser olan bir kullanýcýya ait olmalý.
